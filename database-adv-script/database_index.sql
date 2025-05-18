@@ -14,3 +14,13 @@ CREATE INDEX idx_booking_date_status ON Booking (check_in_date, status);
 CREATE INDEX idx_property_owner_id ON Property (owner_id);
 CREATE INDEX idx_property_location ON Property (location);
 CREATE INDEX idx_property_status ON Property (status);
+
+-- Performance analysis queries (run before and after applying indexes)
+-- User query
+EXPLAIN ANALYZE SELECT * FROM User WHERE email = 'user@example.com';
+
+-- Booking query
+EXPLAIN ANALYZE SELECT * FROM Booking WHERE user_id = 123 AND status = 'confirmed' ORDER BY check_in_date;
+
+-- Property query
+EXPLAIN ANALYZE SELECT * FROM Property WHERE owner_id = 456 AND status = 'available';
