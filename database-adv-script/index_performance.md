@@ -1,27 +1,12 @@
--- Create index on user_id in bookings table (improves WHERE and JOIN performance)
-CREATE INDEX idx_bookings_user_id ON bookings(user_id);
+# SQL Indexing and Performance Measurement
 
--- Create index on property_id in bookings table (used in JOIN and filtering)
-CREATE INDEX idx_bookings_property_id ON bookings(property_id);
+## Overview
+This document outlines the process of creating indexes for specific columns in a database and measuring query performance before and after the addition of these indexes.
 
--- Create index on property_id in reviews table (used for JOINs and subqueries)
-CREATE INDEX idx_reviews_property_id ON reviews(property_id);
+## Creating Indexes
 
--- Create index on email in users table (for login/authentication WHERE clauses)
-CREATE INDEX idx_users_email ON users(email);
+### Recommended Indexes
 
--- Create index on city in properties table (improves searches by city)
-CREATE INDEX idx_properties_city ON properties(city);
-
-
----
-
-### 🧠 Summary:
-- Use `EXPLAIN` to see **execution strategy**.
-- Use `EXPLAIN ANALYZE` (PostgreSQL) to see **timings**.
-- Look for **"Using index"** or **"ref"** type.
-- Create indexes on columns used in `WHERE`, `JOIN`, `ORDER BY`.
-
----
-
-Let me know if you want a custom benchmark report using sample queries from your schema.
+1. **Index on Bookings Table (user_id)**
+   ```sql
+   CREATE INDEX idx_user_id ON bookings(user_id);
